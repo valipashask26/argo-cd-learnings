@@ -9,10 +9,10 @@ spec:
   source:
     repoURL: https://github.com/valipashask26/argo-cd-learnings.git
     targetRevision: master
-    path: /
+    path: k8s-manifest
     helm:
       valueFiles:
-      - */**/**.yaml
+      - ./**.yaml
   destination:
     server: https://kubernetes.default.svc       #default server wherever the argo-CD is deployed
     namespace: check-2   # manifest deployment namespace
