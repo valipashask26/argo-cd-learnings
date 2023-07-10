@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/valipashask26/argo-cd-learnings.git
     targetRevision: master
-    path: /main-path
+    path: /
     helm:
       valueFiles:
       - */**/**.yaml
