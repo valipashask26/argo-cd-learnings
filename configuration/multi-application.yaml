@@ -1,32 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sample-argo-application-1
-  namespace: argocd #cd running namespace
-spec:
-  project: default  #project name
-
-  source:
-    repoURL: https://github.com/valipashask26/argo-cd-learnings.git
-    targetRevision: master
-    path: k8s-manifest
-  destination:
-    server: https://kubernetes.default.svc       #default server wherever the argo-CD is deployed
-    namespace: check-1  # manifest deployment namespace
-
-  syncPolicy:
-    syncOptions:
-    - CreateNamespace=true  # create ns if not there
-
-    automated:    # pull for every 3 min (not immed...)
-      selfHeal: true #if we manually change anything in the cluster, sync with git code
-      prune: true   # if we delete a svc in git, argo will delete that in cluster
-
----
-
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
   name: sample-argo-application-2
   namespace: argocd #cd running namespace
 spec:
@@ -35,7 +9,10 @@ spec:
   source:
     repoURL: https://github.com/valipashask26/argo-cd-learnings.git
     targetRevision: master
-    path: k8s-manifest
+    path: /main-path
+    helm:
+      valueFiles:
+      - */**/**.yaml
   destination:
     server: https://kubernetes.default.svc       #default server wherever the argo-CD is deployed
     namespace: check-2   # manifest deployment namespace
