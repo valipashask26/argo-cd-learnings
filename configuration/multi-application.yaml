@@ -12,7 +12,7 @@ spec:
     path: k8s-manifest
     helm:
       valueFiles:
-      - ./**.yaml
+      - '**/*.yaml'
   destination:
     server: https://kubernetes.default.svc       #default server wherever the argo-CD is deployed
     namespace: check-2   # manifest deployment namespace
